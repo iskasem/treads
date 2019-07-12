@@ -9,21 +9,23 @@
 /* Begin PBXBuildFile section */
 		A758836422C7FCBC0040CEC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A758836322C7FCBC0040CEC9 /* AppDelegate.swift */; };
 		A758836622C7FCBC0040CEC9 /* BeginRunVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A758836522C7FCBC0040CEC9 /* BeginRunVC.swift */; };
-		A758836822C7FCBC0040CEC9 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A758836722C7FCBC0040CEC9 /* SecondViewController.swift */; };
+		A758836822C7FCBC0040CEC9 /* RunLogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A758836722C7FCBC0040CEC9 /* RunLogVC.swift */; };
 		A758836B22C7FCBC0040CEC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A758836922C7FCBC0040CEC9 /* Main.storyboard */; };
 		A758836D22C7FCC00040CEC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A758836C22C7FCC00040CEC9 /* Assets.xcassets */; };
 		A758837022C7FCC00040CEC9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A758836E22C7FCC00040CEC9 /* LaunchScreen.storyboard */; };
+		A7AC41D722D895A800A7454D /* CurrentRunVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC41D622D895A800A7454D /* CurrentRunVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A758836022C7FCBC0040CEC9 /* treads.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = treads.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A758836322C7FCBC0040CEC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A758836522C7FCBC0040CEC9 /* BeginRunVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeginRunVC.swift; sourceTree = "<group>"; };
-		A758836722C7FCBC0040CEC9 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		A758836722C7FCBC0040CEC9 /* RunLogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunLogVC.swift; sourceTree = "<group>"; };
 		A758836A22C7FCBC0040CEC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A758836C22C7FCC00040CEC9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A758836F22C7FCC00040CEC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A758837122C7FCC00040CEC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A7AC41D622D895A800A7454D /* CurrentRunVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentRunVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +65,7 @@
 				A75883BD22D25AC20040CEC9 /* Resources */,
 				A758836322C7FCBC0040CEC9 /* AppDelegate.swift */,
 				A758836522C7FCBC0040CEC9 /* BeginRunVC.swift */,
-				A758836722C7FCBC0040CEC9 /* SecondViewController.swift */,
+				A758836722C7FCBC0040CEC9 /* RunLogVC.swift */,
 				A758836922C7FCBC0040CEC9 /* Main.storyboard */,
 				A758836C22C7FCC00040CEC9 /* Assets.xcassets */,
 				A758836E22C7FCC00040CEC9 /* LaunchScreen.storyboard */,
@@ -96,6 +98,7 @@
 		A75883C022D25AF30040CEC9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A7AC41D622D895A800A7454D /* CurrentRunVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -178,8 +181,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A758836822C7FCBC0040CEC9 /* SecondViewController.swift in Sources */,
+				A758836822C7FCBC0040CEC9 /* RunLogVC.swift in Sources */,
 				A758836422C7FCBC0040CEC9 /* AppDelegate.swift in Sources */,
+				A7AC41D722D895A800A7454D /* CurrentRunVC.swift in Sources */,
 				A758836622C7FCBC0040CEC9 /* BeginRunVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
