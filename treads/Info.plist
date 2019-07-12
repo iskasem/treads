@@ -51,5 +51,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>Treads need your location for tracking your run</string>
 </dict>
 </plist>
