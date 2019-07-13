@@ -32,7 +32,7 @@ extension Int {
         if durationSeconds < 0 {
             return "00:00:00"
         }else {
-            if durationHoursx == 0  {
+            if durationHours == 0  {
                 return String(format : "%02d:%02d" , durationMinutes , durationSeconds)
             }else{
                 return String(format : "%02d:%02d:%02d", durationHours , durationMinutes , durationSeconds)
