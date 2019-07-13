@@ -25,6 +25,10 @@ class CurrentRunVC: LocationVC {
     var counter = 0
     var timer = Timer()
     var pace = 0
+    let resumeImage = UIImage(named: "resumeButton")
+    let pauseImage = UIImage(named:  "pauseButton")
+   
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,16 +48,26 @@ class CurrentRunVC: LocationVC {
     func startRun(){
         manager?.startUpdatingLocation()
         startTimer()
+        pauseBtn.setImage(pauseImage , for: .normal)
     
     }
     
     func endRun(){
         manager?.stopUpdatingLocation()
+        //add our object to realm
     }
     func startTimer(){
         durationLbl.text = counter.formatTimeDurationToString()
             //.formatTimeDurationToString()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
+    }
+    
+    func pauseRun (){
+        startLocation = nil
+        lastLocation = nil
+        timer.invalidate()
+        manager?.stopUpdatingLocation()
+        pauseBtn.setImage(resumeImage, for: .normal)
     }
     
     @objc func updateCounter(){
@@ -67,6 +81,11 @@ class CurrentRunVC: LocationVC {
     }
     
     @IBAction func pauseRunBtnPressed(_ sender: Any) {
+        if timer.isValid {
+        pauseRun()
+        }else{
+            startRun()
+        }
     }
     
     @objc func endRunSwipe(sender : UIPanGestureRecognizer){
@@ -81,6 +100,7 @@ class CurrentRunVC: LocationVC {
                 }else if sliderView.center.x >= (swipBGImageView.center.x + maxAdjust){
                     sliderView.center.x = swipBGImageView.center.x + maxAdjust
                     /// end run code should be here
+                    endRun()
                     dismiss(animated: true, completion: nil)
                 } else{
                     sliderView.center.x = swipBGImageView.center.x - minAdjust
