@@ -7,24 +7,94 @@
 //
 
 import UIKit
+import MapKit
 
-class CurrentRunVC: UIViewController {
+class CurrentRunVC: LocationVC {
 
+    @IBOutlet weak var swipBGImageView: UIImageView!
+    @IBOutlet weak var sliderImageView: UIImageView!
+    @IBOutlet weak var durationLbl: UILabel!
+    @IBOutlet weak var paceLbl: UILabel!
+    @IBOutlet weak var distanceLbl: UILabel!
+    @IBOutlet weak var pauseBtn: UIButton!
+    
+    var startLocation : CLLocation!
+    var lastLocation : CLLocation!
+    
+    var runDistance = 0.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let swipeGesture = UIPanGestureRecognizer(target: self, action: #selector(endRunSwipe(sender: )))
+        sliderImageView.addGestureRecognizer(swipeGesture)
+        sliderImageView.isUserInteractionEnabled = true
+        swipeGesture.delegate = self as?UIGestureRecognizerDelegate
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        manager?.delegate = self
+        manager?.distanceFilter = 10
+        startRun()
     }
-    */
+    
+    func startRun(){
+        manager?.startUpdatingLocation()
+    }
+    
+    func endRun(){
+        manager?.stopUpdatingLocation()
+    }
+    
+    @IBAction func pauseRunBtnPressed(_ sender: Any) {
+    }
+    
+    @objc func endRunSwipe(sender : UIPanGestureRecognizer){
+        let minAdjust :CGFloat = 82
+        let maxAdjust : CGFloat = 132
+        if let sliderView = sender.view{
+            if sender.state == UIGestureRecognizer.State.began || sender.state ==
+                UIGestureRecognizer.State.changed{
+                 let translation  = sender.translation(in: self.view)
+                if sliderView.center.x >= (swipBGImageView.center.x - minAdjust) && sliderView.center.x <= (swipBGImageView.center.x + maxAdjust){
+                    sliderView.center.x = sliderView.center.x + translation.x
+                }else if sliderView.center.x >= (swipBGImageView.center.x + maxAdjust){
+                    sliderView.center.x = swipBGImageView.center.x + maxAdjust
+                    /// end run code should be here
+                    dismiss(animated: true, completion: nil)
+                } else{
+                    sliderView.center.x = swipBGImageView.center.x - minAdjust
+                }
+    
+                 sender.setTranslation(CGPoint.zero, in: self.view)
+            }else if sender.state == UIGestureRecognizer.State.ended {
+                UIView.animate(withDuration: 0.1, animations: {
+                    sliderView.center.x = self.swipBGImageView.center.x - minAdjust
+                    
+                    
+                })
+            }
+           
+        }
+    }
+  
+}
 
+extension CurrentRunVC : CLLocationManagerDelegate{
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            checkLocationAuthorizationStatus()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if startLocation == nil{
+            startLocation = locations.first
+        }else if let location = locations.last {
+            runDistance += lastLocation.distance(from: location)
+        
+            distanceLbl.text = "\(runDistance.metersToKilometers(places: 2))"
+        }
+        lastLocation = locations.last
+    }
 }
