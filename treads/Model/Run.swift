@@ -16,11 +16,11 @@ class Run:Object {
     dynamic public private (set) var duration = 0
     dynamic public private (set) var date = NSDate()
     
-     class func primarykey() -> String {
+    class func primarykey() -> String {
         return "id"
     }
     
-     class func indexProperties () -> [String] {
+    class func indexProperties () -> [String] {
     return ["page","date","duration"]
     }
     
@@ -31,5 +31,21 @@ class Run:Object {
         self.pace = pace
         self.duration = duration
         self.distance = distance
+    }
+    
+    static func addRunToRealm(pace : Int , distance : Double , duration : Int){
+        REALM_QUEUE.sync {
+            let run = Run(pace: pace, distance: distance, duration: duration)
+            do{
+                let realm = try Realm()
+                try realm.write {
+                    realm.add(run)
+                  try realm.commitWrite()
+                }
+            } catch {
+                debugPrint("Error adding run to realm!")
+            }
+        }
+ 
     }
 }

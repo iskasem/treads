@@ -55,6 +55,7 @@ class CurrentRunVC: LocationVC {
     func endRun(){
         manager?.stopUpdatingLocation()
         //add our object to realm
+        Run.addRunToRealm(pace: pace, distance: runDistance, duration: counter)
     }
     func startTimer(){
         durationLbl.text = counter.formatTimeDurationToString()
