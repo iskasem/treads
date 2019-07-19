@@ -37,6 +37,7 @@ class CurrentRunVC: LocationVC {
         sliderImageView.addGestureRecognizer(swipeGesture)
         sliderImageView.isUserInteractionEnabled = true
         swipeGesture.delegate = self as?UIGestureRecognizerDelegate
+ 
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,6 +56,8 @@ class CurrentRunVC: LocationVC {
     func endRun(){
         manager?.stopUpdatingLocation()
         //add our object to realm
+        print("counter is \(counter)")
+        Run.addRunToRealm(pace: pace, duration: counter, distance: runDistance)
     }
     func startTimer(){
         durationLbl.text = counter.formatTimeDurationToString()
