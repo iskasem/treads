@@ -251,7 +251,7 @@
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RunLogCell" rowHeight="61" id="TMs-Eg-8DV">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RunLogCell" rowHeight="61" id="TMs-Eg-8DV" customClass="RunLogCell" customModule="treads" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="61"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TMs-Eg-8DV" id="svu-8d-p2I">
@@ -285,6 +285,13 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nK2-Kf-f9W">
+                                                    <rect key="frame" x="0.0" y="60" width="375" height="1"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="GEK-jo-6ZR"/>
+                                                    </constraints>
+                                                </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="iYK-Yr-ohb">
                                                     <rect key="frame" x="163" y="10" width="49.5" height="41.5"/>
                                                     <subviews>
@@ -306,11 +313,14 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="pUt-an-G9t" secondAttribute="bottom" id="1Xh-8s-lYJ"/>
+                                                <constraint firstAttribute="trailing" secondItem="nK2-Kf-f9W" secondAttribute="trailing" id="7UH-uU-NoQ"/>
                                                 <constraint firstItem="pUt-an-G9t" firstAttribute="top" secondItem="svu-8d-p2I" secondAttribute="top" id="H6o-34-NNY"/>
                                                 <constraint firstItem="iYK-Yr-ohb" firstAttribute="centerX" secondItem="svu-8d-p2I" secondAttribute="centerX" id="IIs-nw-Mk2"/>
                                                 <constraint firstItem="l0b-qf-7KX" firstAttribute="centerY" secondItem="svu-8d-p2I" secondAttribute="centerY" id="UpO-K7-6l3"/>
                                                 <constraint firstItem="l0b-qf-7KX" firstAttribute="leading" secondItem="svu-8d-p2I" secondAttribute="leading" constant="8" id="XDS-qN-HDK"/>
+                                                <constraint firstAttribute="bottom" secondItem="nK2-Kf-f9W" secondAttribute="bottom" id="byJ-yy-NfO"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="ePY-Ww-0Jo" secondAttribute="trailing" constant="8" id="eFa-JZ-8DT"/>
+                                                <constraint firstItem="nK2-Kf-f9W" firstAttribute="leading" secondItem="svu-8d-p2I" secondAttribute="leading" id="hw5-uv-wLQ"/>
                                                 <constraint firstItem="ePY-Ww-0Jo" firstAttribute="centerY" secondItem="svu-8d-p2I" secondAttribute="centerY" id="jUS-9Q-49M"/>
                                                 <constraint firstItem="iYK-Yr-ohb" firstAttribute="centerY" secondItem="svu-8d-p2I" secondAttribute="centerY" id="r0E-Fv-iRk"/>
                                                 <constraint firstItem="pUt-an-G9t" firstAttribute="leading" secondItem="svu-8d-p2I" secondAttribute="leading" id="wbH-JF-5nI"/>
@@ -318,6 +328,12 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="averagePaceLbl" destination="hiW-4J-VIj" id="u7X-5x-7ln"/>
+                                            <outlet property="dateLbl" destination="ePY-Ww-0Jo" id="Fuf-Uv-cIu"/>
+                                            <outlet property="runDurationLbl" destination="Yg5-qE-8Ax" id="mmU-OG-RhC"/>
+                                            <outlet property="totalDistanceLbl" destination="5hg-Ay-WKs" id="mtt-F0-hYI"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -338,6 +354,9 @@
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="My Log" image="tabbar-myLogIconGray" id="cPa-gy-q4n"/>
+                    <connections>
+                        <outlet property="tableView" destination="FB8-s3-TlI" id="3IG-wy-iPz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>

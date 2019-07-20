@@ -58,6 +58,9 @@ class Run : Object {
         let realm = try Realm()
         var runs = realm.objects(Run.self)
             runs = runs.sorted(byKeyPath: "date", ascending: false)
+        let runSorted = runs
+            //print("date max is \(runSorted[0])")
+            print("run sorted value is \(String(describing: runSorted.first?.id))")
             return runs
             
         }catch{
