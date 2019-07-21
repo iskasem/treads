@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import RealmSwift
 
 class CurrentRunVC: LocationVC {
 
@@ -18,13 +19,14 @@ class CurrentRunVC: LocationVC {
     @IBOutlet weak var distanceLbl: UILabel!
     @IBOutlet weak var pauseBtn: UIButton!
     
-    var startLocation : CLLocation!
-    var lastLocation : CLLocation!
-    
-    var runDistance = 0.0
-    var counter = 0
-    var timer = Timer()
-    var pace = 0
+    fileprivate var startLocation : CLLocation!
+    fileprivate var lastLocation : CLLocation!
+    fileprivate var runDistance = 0.0
+    fileprivate var counter = 0
+    fileprivate var timer = Timer()
+    fileprivate var coordinatelocations = List<Location>()
+    fileprivate var pace = 0
+   
     let resumeImage = UIImage(named: "resumeButton")
     let pauseImage = UIImage(named:  "pauseButton")
    
@@ -57,7 +59,7 @@ class CurrentRunVC: LocationVC {
         manager?.stopUpdatingLocation()
         //add our object to realm
         print("counter is \(counter)")
-        Run.addRunToRealm(pace: pace, duration: counter, distance: runDistance)
+        Run.addRunToRealm(pace: pace, duration: counter, distance: runDistance ,locations : coordinatelocations)
     }
     func startTimer(){
         durationLbl.text = counter.formatTimeDurationToString()
@@ -135,7 +137,8 @@ extension CurrentRunVC : CLLocationManagerDelegate{
             startLocation = locations.first
         }else if let location = locations.last {
             runDistance += lastLocation.distance(from: location)
-        
+        let newLocation = Location(longtitude: Double(lastLocation.coordinate.longitude), latitude: Double(lastLocation.coordinate.latitude))
+            coordinatelocations.insert(newLocation, at: 0)
             distanceLbl.text = "\(runDistance.metersToKilometers(places: 2))"
         }
         if counter > 0 && runDistance > 0 {
