@@ -43,7 +43,7 @@ class Run : Object {
             let run = Run(duration: duration, pace: pace, distance: distance ,locations: locations)
            // print("this is the data of run\(run)")
             do{
-                let realm = try Realm()
+                let realm = try Realm(configuration: RealmConfig.runDataCongig)
                 try realm.write {
                     realm.add(run)
                    // print("duration inside addToRealm is \(duration)")
@@ -57,7 +57,7 @@ class Run : Object {
     
     static func returnAllRuns() -> Results<Run>? {
         do{
-        let realm = try Realm()
+        let realm = try Realm(configuration: RealmConfig.runDataCongig)
         var runs = realm.objects(Run.self)
             runs = runs.sorted(byKeyPath: "date", ascending: false)
         let runSorted = runs
