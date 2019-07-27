@@ -58,8 +58,10 @@ class CurrentRunVC: LocationVC {
     func endRun(){
         manager?.stopUpdatingLocation()
         //add our object to realm
-        print("counter is \(counter)")
         Run.addRunToRealm(pace: pace, duration: counter, distance: runDistance ,locations : coordinatelocations)
+        print ("coordinate locations @ end run is \(coordinatelocations)")
+       
+        
     }
     func startTimer(){
         durationLbl.text = counter.formatTimeDurationToString()
@@ -137,8 +139,12 @@ extension CurrentRunVC : CLLocationManagerDelegate{
             startLocation = locations.first
         }else if let location = locations.last {
             runDistance += lastLocation.distance(from: location)
-        let newLocation = Location(longtitude: Double(lastLocation.coordinate.longitude), latitude: Double(lastLocation.coordinate.latitude))
+    let  newLocation = Location(longtitude: Double(lastLocation.coordinate.longitude), latitude: Double(lastLocation.coordinate.latitude))
+            //newLocation variable is getting 0 from the object
+             print ("lastLocation.coordinate.longitude is   \(Double(lastLocation.coordinate.longitude))")
+            print ("the new location variable is \(newLocation)")
             coordinatelocations.insert(newLocation, at: 0)
+           
             distanceLbl.text = "\(runDistance.metersToKilometers(places: 2))"
         }
         if counter > 0 && runDistance > 0 {

@@ -19,3 +19,5 @@ class Location :Object {
         self.latitude = latitude
     }
 }
+
+let newMyLocation = Location(longtitude: 2454455, latitude:244555)

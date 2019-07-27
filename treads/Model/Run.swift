@@ -37,7 +37,6 @@ class Run : Object {
     }
     
     static func addRunToRealm(pace :Int , duration :Int , distance :Double , locations :List<Location>){
-        // Persist your data easily
     
         REALM_QUE.sync {
             let run = Run(duration: duration, pace: pace, distance: distance ,locations: locations)
